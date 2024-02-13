@@ -15,17 +15,17 @@ jobs:
         run: ls -lah
       - name: patch sample service pom
         run: |
-          sed -i 's|</project>|<build><plugins><plugin><groupId>org.springframework.boot</groupId><artifactId>spring-boot-maven-plugin</artifactId></plugin></plugins></build></project>|' initializr-sample-service/pom.xml
+          sed -i 's|</project>|<build><plugins><plugin><groupId>org.springframework.boot</groupId><artifactId>spring-boot-maven-plugin</artifactId></plugin></plugins></build></project>|' initializr-service-sample/pom.xml
       - name: update initializr config
         run: |
-          curl https://raw.githubusercontent.com/spring-io/start.spring.io/main/start-site/src/main/resources/application.yml -o initializr-sample-service/src/main/resources/application.yml
+          curl https://raw.githubusercontent.com/spring-io/start.spring.io/main/start-site/src/main/resources/application.yml -o initializr-service-sample/src/main/resources/application.yml
       - name: Set up JDK 21
         uses: oracle-actions/setup-java@v1
         with:
           website: jdk.java.net
           release: 21
       - name: Build with Maven
-        run: mvn spring-boot:build-image --file initializr-sample-service/pom.xml -Dspring-boot.build-image.imageName=helmstart/spring-initializr
+        run: mvn spring-boot:build-image --file initializr-service-sample/pom.xml -Dspring-boot.build-image.imageName=helmstart/spring-initializr
       - name: Login to Docker Hub
         uses: docker/login-action@v2
         with:
