@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          repository: 'https://github.com/spring-io/initializr.git'
+          repository: 'spring-io/initializr'
       - name: patch sample service pom
         run: |
           sed -i 's|</project>|<build><plugins><plugin><groupId>org.springframework.boot</groupId><artifactId>spring-boot-maven-plugin</artifactId></plugin></plugins></build></project>|' initializr-sample-service/pom.xml
