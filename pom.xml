@@ -13,6 +13,9 @@
 
     <modules>
         <module>spring-postgres-tester</module>
+        <module>spring-mariadb-tester</module>
+        <module>spring-mysql-tester</module>
+        <module>spring-rabbitmq-tester</module>
         <module>quarkus-postgres-tester</module>
     </modules>
 

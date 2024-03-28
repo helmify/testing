@@ -3,3 +3,7 @@
 /**/*.tar.gz
 /**/target
 /**/helm
+**/.idea
+**/.mvn
+**/mvnw*
+**/*.iml
