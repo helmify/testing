@@ -1,0 +1,19 @@
+name: Build Tester
+description: Build Tester
+
+inputs:
+  name:
+    description: 'The Tester name'
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Build ${{ inputs.name }} Testers
+      shell: bash
+      run: |
+        mvn -DskipTests=true clean compile spring-boot:build-image -Dspring-boot.build-image.imageName=spring-${{ inputs.name }}-tester:0.1.0  --file spring-${{ inputs.name }}-tester/pom.xml && 
+        docker push helmify/spring-${{ inputs.name }}-tester:latest &&
+        
+        mvn -DskipTests=true clean compile quarkus:image-build -Dquarkus.container-image.name=quarkus-${{ inputs.name }}-tester:0.1.0 -Dquarkus.container-image.tag=0.1.0 --file quarkus-${{ inputs.name }}-tester/pom.xml &&
+        docker push helmify/quarkus-${{ inputs.name }}-tester:latest
