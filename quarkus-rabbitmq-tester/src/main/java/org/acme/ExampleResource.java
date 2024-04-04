@@ -2,15 +2,25 @@ package org.acme;
 
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
-import jakarta.ws.rs.Produces;
-import jakarta.ws.rs.core.MediaType;
+import org.eclipse.microprofile.reactive.messaging.Channel;
+import org.eclipse.microprofile.reactive.messaging.Emitter;
+
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 @Path("/ping")
 public class ExampleResource {
 
+    @Channel("quote")
+    Emitter<String> quoteRequestEmitter;
+
     @GET
-    @Produces(MediaType.TEXT_PLAIN)
-    public String hello() {
-        return "Hello from Quarkus REST";
+    public Map<String, Object> ping() throws Exception {
+        String payload = "rabbitmq";
+
+        quoteRequestEmitter.send(payload);
+        String poll = QuoteReceiver.QUEUE.poll(10, TimeUnit.SECONDS);
+
+        return Map.of("rabbitmq", payload.equals(poll));
     }
 }

@@ -24,6 +24,7 @@
         <module>spring-mongodb-tester</module>
         <module>spring-neo4j-tester</module>
 
+        <module>quarkus-rabbitmq-tester</module>
         <module>quarkus-postgres-tester</module>
         <module>quarkus-cassandra-tester</module>
         <module>quarkus-couchbase-tester</module>
