@@ -4,6 +4,4 @@
 /**/target
 /**/helm
 **/.idea
-**/.mvn
-**/mvnw*
 **/*.iml
