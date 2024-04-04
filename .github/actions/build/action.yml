@@ -17,4 +17,5 @@ runs:
         docker push helmify/spring-${{ inputs.name }}-tester:latest &&
         
         cd quarkus-${{ inputs.name }}-tester && chmod +x mvnw && ./mvnw install -DskipTests -Dquarkus.container-image.build=true -Dquarkus.container-image.tag=latest &&
+        docker tag runner/quarkus-${{ inputs.name }}-tester:latest helmify/quarkus-${{ inputs.name }}-tester:latest &&
         docker push helmify/quarkus-${{ inputs.name }}-tester:latest
