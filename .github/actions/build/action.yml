@@ -16,6 +16,5 @@ runs:
         docker tag spring-${{ inputs.name }}-tester:0.1.0 helmify/spring-${{ inputs.name }}-tester:latest &&
         docker push helmify/spring-${{ inputs.name }}-tester:latest &&
         
-        mvn -DskipTests=true clean compile quarkus:image-build -Dquarkus.container-image.name=quarkus-${{ inputs.name }}-tester:0.1.0 -Dquarkus.container-image.tag=0.1.0 --file quarkus-${{ inputs.name }}-tester/pom.xml &&
-        docker tag runner/quarkus-${{ inputs.name }}-tester:0.1.0 helmify/quarkus-${{ inputs.name }}-tester:0.1.0 &&
+        cd quarkus-${{ inputs.name }}-tester && ./mvnw install -DskipTests -Dquarkus.container-image.build=true -Dquarkus.container-image.name=helmify/quarkus-${{ inputs.name }}-tester:latest -Dquarkus.container-image.tag=latest &&
         docker push helmify/quarkus-${{ inputs.name }}-tester:latest
