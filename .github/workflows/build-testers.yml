@@ -23,4 +23,8 @@ jobs:
         uses: ./.github/actions/build
         with:
           name: rabbitmq
+      - name: Build Mysql Testers
+        uses: ./.github/actions/build
+        with:
+          name: mysql
 
