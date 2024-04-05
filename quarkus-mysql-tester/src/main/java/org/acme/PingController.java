@@ -24,6 +24,7 @@ public class PingController {
         connection.createStatement().execute("insert into test (name) values ('test')");
         Statement statement = connection.createStatement();
         boolean next = statement.executeQuery("SELECT * FROM test where name = 'test'").next();
+
         return Map.of("mysql", next);
     }
 
