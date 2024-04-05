@@ -10,14 +10,13 @@ import java.sql.Connection;
 import java.sql.Statement;
 import java.util.Map;
 
-@ApplicationScoped
+@Path("/ping")
 public class PingController {
 
     @Inject
     AgroalDataSource defaultDataSource;
 
     @GET
-    @Path("/ping")
     public Map<String, Object> ping() throws Exception {
         Connection connection = defaultDataSource.getConnection();
         connection.createStatement().execute("CREATE TABLE IF NOT EXISTS test (id SERIAL PRIMARY KEY, name TEXT)");
