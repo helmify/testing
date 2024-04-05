@@ -11,7 +11,7 @@ public class QuoteReceiver {
 
     public static final BlockingQueue<String> QUEUE = new ArrayBlockingQueue<>(1);
 
-    @Incoming("quotes")
+    @Incoming("quotes-in")
     public void receive(String quote) {
         QUEUE.add(quote);
     }

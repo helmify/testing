@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 @Path("/ping")
 public class ExampleResource {
 
-    @Channel("quote")
+    @Channel("quotes-out")
     Emitter<String> quoteRequestEmitter;
 
     @GET
