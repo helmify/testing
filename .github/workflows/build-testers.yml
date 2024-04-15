@@ -15,16 +15,8 @@ jobs:
         with:
           dockerHubUsername: ${{ secrets.DOCKERHUB_USERNAME }}
           dockerHubToken: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Build Postgres Testers
+      - name: Build Postgres/RabbitMQ/Redis Testers
         uses: ./.github/actions/build
         with:
-          name: postgres
-      - name: Build Rabbitmq Testers
-        uses: ./.github/actions/build
-        with:
-          name: rabbitmq
-      - name: Build Mysql Testers
-        uses: ./.github/actions/build
-        with:
-          name: mysql
+          name: postgres-rabbit-redis
 
