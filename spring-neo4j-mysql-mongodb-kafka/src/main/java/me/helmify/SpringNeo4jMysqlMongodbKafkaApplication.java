@@ -21,8 +21,6 @@ public class SpringNeo4jMysqlMongodbKafkaApplication {
 		@Autowired
 		DataSource ds;
 
-
-
 		@GetMapping("/ping/mysql")
 		public Map<String, Object> hello() throws Exception {
 			boolean execute = ds.getConnection().prepareStatement("SELECT 1").execute();
@@ -30,4 +28,30 @@ public class SpringNeo4jMysqlMongodbKafkaApplication {
 		}
 	}
 
+	@RestController
+	public class Neo4jPingController {
+
+		@GetMapping("/ping/neo4j")
+		public Map<String, Object> hello() throws Exception {
+			return Map.of("neo4j", false);
+		}
+	}
+
+	@RestController
+	public class MongoDbPingController {
+
+		@GetMapping("/ping/mongodb")
+		public Map<String, Object> hello() throws Exception {
+			return Map.of("mongodb", false);
+		}
+	}
+
+	@RestController
+	public class KafkaPingController {
+
+		@GetMapping("/ping/kafka")
+		public Map<String, Object> hello() throws Exception {
+			return Map.of("kafka", false);
+		}
+	}
 }
