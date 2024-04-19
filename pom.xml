@@ -12,18 +12,13 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>spring-mariadb-tester</module>
-        <module>spring-mysql-tester</module>
-        <module>spring-kafka-tester</module>
-        <module>spring-couchbase-tester</module>
-        <module>spring-cassandra-tester</module>
-        <module>spring-elasticsearch-tester</module>
-        <module>spring-mongodb-tester</module>
-        <module>spring-neo4j-tester</module>
-
-        <module>quarkus-mysql-tester</module>
-        <module>quarkus-cassandra-tester</module>
-        <module>quarkus-couchbase-tester</module>
+        <module>quarkus-mariadb-elastic-couchbase-cassandra</module>
+        <module>quarkus-neo4j-mysql-mongodb-kafka</module>
+        <module>quarkus-postgres-rabbit-redis</module>
+        <module>spring-mariadb-elastic-couchbase-cassandra</module>
+        <module>spring-neo4j-mysql-mongodb-kafka</module>
+        <module>spring-postgres-rabbit-redis</module>
     </modules>
+
 
 </project>
