@@ -12,11 +12,11 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>quarkus-mariadb-elastic-couchbase-cassandra</module>
-        <module>quarkus-neo4j-mysql-mongodb-kafka</module>
+        <module>quarkus-mecc</module>
+        <module>quarkus-nmmk</module>
         <module>quarkus-postgres-rabbit-redis</module>
-        <module>spring-mariadb-elastic-couchbase-cassandra</module>
-        <module>spring-neo4j-mysql-mongodb-kafka</module>
+        <module>spring-mecc</module>
+        <module>spring-nmmk</module>
         <module>spring-postgres-rabbit-redis</module>
     </modules>
 
