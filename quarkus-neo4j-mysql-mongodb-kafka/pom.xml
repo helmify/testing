@@ -52,6 +52,11 @@
             <artifactId>quarkus-messaging-kafka</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.neo4j</groupId>
+            <artifactId>neo4j-ogm-quarkus</artifactId>
+            <version>3.8.0</version>
+        </dependency>
+        <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-agroal</artifactId>
         </dependency>

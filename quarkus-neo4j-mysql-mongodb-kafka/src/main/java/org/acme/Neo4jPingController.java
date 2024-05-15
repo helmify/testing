@@ -15,6 +15,10 @@ import org.neo4j.driver.reactive.ReactiveSession;
 
 import io.smallrye.mutiny.Multi;
 import io.smallrye.mutiny.Uni;
+import org.neo4j.ogm.annotation.Id;
+import org.neo4j.ogm.annotation.NodeEntity;
+import org.neo4j.ogm.session.Session;
+import org.neo4j.ogm.session.SessionFactory;
 
 import java.time.Duration;
 import java.util.Map;
@@ -24,7 +28,7 @@ import java.util.Map;
 public class Neo4jPingController {
 
     @Inject
-    Driver driver;
+    SessionFactory sessionFactory;
 
     @GET
     @Path("/neo4j")
@@ -34,34 +38,19 @@ public class Neo4jPingController {
         String name = "neo4j";
         test.setName(name);
 
-        // write
-        Uni.createFrom().emitter(e -> Multi.createFrom().resource(() -> driver.session(ReactiveSession.class),
-                                session -> session.executeWrite(tx -> {
-                                    var result = tx.run(
-                                            "CREATE (t:Neo4jTest {id: randomUUID(), name: $name}) RETURN t",
-                                            Map.of("name", test.name));
-                                    return Multi.createFrom().publisher(result).flatMap(ReactiveResult::records);
-                                }))
-                        .withFinalizer(Neo4jPingController::sessionFinalizer)
-                        .subscribe()
-                        .asIterable().stream().iterator().next())
-                .await().atMost(Duration.ofSeconds(10));
+        Session session = sessionFactory.openSession();
+        session.save(test);
 
+        Neo4jTest fromdb = session.loadAll(Neo4jTest.class).iterator().next();
 
-
-        // read
-        String fromDb = Multi.createFrom().resource(() -> driver.session(ReactiveSession.class),
-                        session -> session.executeRead(tx -> {
-                            var result = tx.run("MATCH (t:Neo4jTest) RETURN t.name as name ORDER BY t.name");
-                            return Multi.createFrom().publisher(result).flatMap(ReactiveResult::records);
-                        }))
-                .withFinalizer(Neo4jPingController::sessionFinalizer)
-                .map(record -> record.get("name").asString()).subscribe().asIterable().stream().iterator().next();
-
-        return Map.of("neo4j", name.equals(fromDb));
+        return Map.of("neo4j", name.equals(fromdb.getName()));
     }
 
+    @NodeEntity
     public static class Neo4jTest {
+
+
+        @Id
         private String name;
 
         public String getName() {

@@ -11,7 +11,7 @@ public class KafkaConsumer {
 
     public static final BlockingQueue<String> KAFKA_QUEUE = new ArrayBlockingQueue<>(1);
 
-    @Incoming("words")
+    @Incoming("requests")
     public void onMessage(String message) {
         KAFKA_QUEUE.add(message);
     }

@@ -14,8 +14,7 @@ import static org.acme.KafkaConsumer.KAFKA_QUEUE;
 @Path("/ping")
 public class KafkaPingController {
 
-    @Inject
-    @Channel("words-in")
+    @Channel("word-requests")
     Emitter<String> emitter;
 
     @GET
