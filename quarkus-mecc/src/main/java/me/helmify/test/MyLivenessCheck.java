@@ -1,4 +1,4 @@
-package org.acme;
+package me.helmify.test;
 
 import org.eclipse.microprofile.health.HealthCheck;
 import org.eclipse.microprofile.health.HealthCheckResponse;
