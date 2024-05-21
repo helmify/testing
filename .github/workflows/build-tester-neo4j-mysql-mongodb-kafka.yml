@@ -1,4 +1,4 @@
-name: helm testing build
+name: Helmify-Testing Neo4j/Mysql/Mongodb/Kafka
 
 on:
   push:

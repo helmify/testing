@@ -1,4 +1,4 @@
-name: helm testing build
+name: Helmify-Testing Mariadb/Elasticsearch/Cassandra/Couchbase
 
 on:
   push:
