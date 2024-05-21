@@ -18,5 +18,5 @@ jobs:
       - name: Build Neo4j/Mysql/Mongodb/Kafka Testers
         uses: ./.github/actions/build
         with:
-          name: mecc
+          name: nmmk
 
