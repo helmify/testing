@@ -1,6 +1,7 @@
 name: Helmify-Testing Postgres/RabbitMQ/Redis
 
 on:
+  workflow_call:
   push:
     branches: [ "main", "develop", "feature/**", "fix/**" ]
 

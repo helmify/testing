@@ -1,6 +1,7 @@
 name: Helmify-Testing Mariadb/Elasticsearch/Cassandra/Couchbase
 
 on:
+  workflow_call:
   push:
     branches: [ "main", "develop", "feature/**", "fix/**" ]
 
